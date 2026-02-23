@@ -68,6 +68,50 @@ Evolutionary experiment (n=200):
 - greedy fitness evolution is in evolve_n200_greedyavg_summary.csv (fit_mean, fit_min, survivor_fit_mean)
 - LS-confirm minimum over generations is in evolve_n200_greedyavg_summary.csv (ls_confirm_min_bottom20)
 
+## Experiment parameters
+
+### Evolutionary search (n = 200)
+
+| Parameter | Value | Notes |
+|---|---:|---|
+| n_target | 200 | Number of vertices in triangulations |
+| generations | 30 | Total generations; including generation 0 gives 31 snapshots |
+| population_size | 320 | Number of triangulations evaluated per generation |
+| greedy_runs | 5 | Fitness = average over these randomized greedy runs |
+| bottom_k (survivors) | 200 | Selected as worst by fitness (smaller ratio) |
+| bottom_check (LS confirm) | 20 | Local search applied only to the worst 20 per generation |
+| ls_iters | 20000 | Iterations for local search confirmation |
+| flips_per_child | 400 | Edge flips per mutated child |
+| children_per_parent | 1 | One child per survivor (mutation-only evolution) |
+| extra_random_each_gen | 80 | Fresh random triangulations injected per generation |
+| seed | 12345 | Random seed (Python + Sage) |
+
+Derived scale (from the above):
+- Triangulations evaluated: 320 × 31 = 9,920
+- Greedy runs executed: 9,920 × 5 = 49,600
+- Local-search confirmations: 20 × 31 = 620 instances
+
+### Multi-size two-stage experiments (n ∈ {40, 60, 80, 100})
+
+| Parameter | Value | Notes |
+|---|---:|---|
+| n_list | {40, 60, 80, 100} | Graph sizes tested |
+| trials | 1000 | Random triangulations per n |
+| greedy_restarts | 10 | Greedy run restarts; best solution among restarts |
+| bottom_k | 50 | Only the bottom 50 (worst by greedy ratio) get local search |
+| ls_iters | 20000 | Iterations for local search on bottom_k |
+| seed | 12345 | Random seed (Python + Sage) |
+
+Derived scale (per n):
+- Triangulations evaluated: 1000
+- Greedy executions: 1000 × 10 = 10,000
+- Local-search applications: 50
+
+Derived scale (total over 4 sizes):
+- Triangulations evaluated: 4,000
+- Greedy executions: 40,000
+- Local-search applications: 200
+
 ## Method overview (high-level)
 
 - We generate planar triangulations (initially random).
@@ -94,7 +138,3 @@ Kenichi Iwata and Mariko Sasakura,
 
 (Replace with an arXiv link once available.)
 
-## License
-
-Add a license file if you plan to accept external contributions or want to clarify reuse.
-MIT or BSD-2-Clause are typical choices for research code.
