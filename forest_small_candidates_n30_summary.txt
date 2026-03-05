@@ -1,0 +1,6 @@
+input=exact_verify_n30_results.csv
+pick_K=30
+exact_time_limit_sec=120
+certified_forest=24/30
+min_forest_opt_among_certified=17
+max_gap_opout_minus_forest_opt_among_certified=7

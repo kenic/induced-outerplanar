@@ -1,0 +1,7 @@
+n=30, trials=200
+greedy_restarts=10, ls_iters=20000
+exact_time_limit_sec=30.0
+total_elapsed_sec=1051.28
+timeouts=1
+optimal_cases=199
+gap_exact_minus_ls: min=0, med=0, mean=0.000, max=0
